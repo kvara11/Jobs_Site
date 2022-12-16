@@ -4,15 +4,16 @@
     <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
-                Post a Job 
+                Edit Job 
             </h2>
-            <p class="mb-4">Post a job to find a developer</p>
+            <p class="mb-4">Edit: {{$post->title}}</p>
         </header>
         
-        <form method="POST" action="/posts" enctype="multipart/form-data">
+        <form method="POST" action="/posts/{{$post->id}}" enctype="multipart/form-data">
             
             @csrf                   {{-- defend from cross-scripting --}}
-            
+            @method('PUT')          {{-- changes from POST to PUT --}}
+
             <div class="mb-6">
                 <label for="title" class="inline-block text-lg mb-2"
                     >Job Title</label
@@ -22,7 +23,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="title"
                     placeholder="Example: Senior Laravel Developer"
-                    value="{{old('title')}}"
+                    value="{{$post->title}}"
                 />
     
                 @error('title')                                                 {{--   outputs validation error     --}}
@@ -41,7 +42,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="company_name"
                     placeholder="Example: Google"
-                    value="{{old('company_name')}}"
+                    value="{{$post->company_name}}"
                 />
 
                 @error('company_name')                                                 {{--   outputs validation error     --}}
@@ -61,7 +62,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="country"
                     placeholder="Example: Remote, Boston MA, etc"
-                    value="{{old('country')}}"
+                    value="{{$post->country}}"
                 />
             </div>
 
@@ -74,7 +75,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="email"
                     placeholder="Example: youremail@email.com"
-                    value="{{old('email')}}"
+                    value="{{$post->email}}"
                 />
 
                 @error('email')                                                 {{--   outputs validation error     --}}
@@ -91,7 +92,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="tags"
                     placeholder="Example: Laravel, Backend, Postgres, etc"
-                    value="{{old('tags')}}"
+                    value="{{$post->tags}}"
                 />
             </div>
 
@@ -104,8 +105,13 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="logo"
                 />
+                <img
+                    class="hidden w-48 mr-6 md:block"
+                    src="{{$post->logo ? asset('storage/' . $post->logo) : asset('images/no_logo.png')}}"
+                    alt="Logo"
+                />
             </div>
-
+            
             <div class="mb-6">
                 <label
                     for="description"
@@ -118,10 +124,10 @@
                     name="description"
                     rows="10"
                     placeholder="Include tasks, requirements, salary, etc"
-                >{{old('description')}}</textarea>
+                >{{$post->description}}</textarea>
 
                 @error('description')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
@@ -129,7 +135,7 @@
                 <button
                     class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                 >
-                    Create Post
+                    Update Post
                 </button>
 
                 <a href="/" class="text-black ml-4"> Back </a>

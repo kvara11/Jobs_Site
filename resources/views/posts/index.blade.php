@@ -16,12 +16,13 @@
 
     @include('partials/_hero')
     @include('partials/_search')
+    
+    @if (count($listData) > 0)
+        <p class="ml-10 mb-5">Total Jobs - {{count($listData)}}</p>
+    @endif
 
     <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
 
-        @if (count($listData) > 0)
-            <p>Total Jobs - {{count($listData)}}</p>
-        @endif
 
         @unless (count($listData) == 0)
             @foreach($listData as $data)
@@ -36,10 +37,11 @@
             <p>No Jobs found</p>
         @endunless
 
-        <div class="mt-6 p-4">
-            {{$listData->links()}}
-        </div>
-
+        
+    </div>
+    
+    <div class="mt-6 p-4">
+        {{$listData->links()}}
     </div>
 
 @endsection

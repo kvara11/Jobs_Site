@@ -14,6 +14,7 @@ class Posts extends Model
         'author',
         'email',
         'company_name',
+        'logo',
         'country',
         'register_time',
         'tags',

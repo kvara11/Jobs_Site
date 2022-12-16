@@ -64,8 +64,17 @@ Route::get('/', [PostController::class, 'index']);
 //show create form   - must be above of get single post !!!
 Route::get('/posts/create', [PostController::class, 'create']);
 
-//store - create form
+//store(save) - create form
 Route::post('/posts', [PostController::class, 'store']);
+
+//show edit form
+Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
+
+//store(save) - edit form
+Route::put('/posts/{post}', [PostController::class, 'update']);
+
+//delete post
+Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
 // get single post - with auto id checker - via controller - must be under of all route !!!
 Route::get('/posts/{post}', [PostController::class, 'show']);

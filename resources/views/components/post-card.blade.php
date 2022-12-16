@@ -3,8 +3,9 @@
 <div class="bg-gray-80 border border-gray-200 rounded p-6">
     <div class="flex">
         <img
+            {{-- use command to link correctly ->   php artisan storage:link --}}
             class="hidden w-48 mr-6 md:block"
-            src="images/no_logo.png"
+            src="{{$data->logo ? asset('storage/' . $data->logo) : asset('images/no_logo.png')}}"
             alt="Logo"
         />
         <div>
