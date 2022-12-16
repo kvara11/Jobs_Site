@@ -14,7 +14,7 @@
             <div class="text-xl font-bold mb-4">{{$data->company_name}}</div>
             
             <div class="text-lg mt-4">
-                <i class="fa-solid fa-location-dot"></i>{{$data->country}}
+                <i class="fa-solid fa-location-dot" style="margin-right: 5px"></i>{{$data->country}}
             </div>
             <x-post-tag :tags="$data->tags" />
         </div>

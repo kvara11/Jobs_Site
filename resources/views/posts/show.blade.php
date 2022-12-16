@@ -22,7 +22,7 @@
                     src=" {{asset('images/no_logo.png')}}"
                     alt=""
                 />
-                <h3 class="text-2xl mb-2">{{$listData->author}}</h3>
+                <h3 class="text-2xl mb-2">{{$listData->title}}</h3>
                 <div class="text-xl font-bold mb-4">{{$listData['company_name']}}</div>
                 
                 <x-post-tag :tags="$listData['tags']" />
@@ -36,14 +36,7 @@
                         Job Description
                     </h3>
                     <div class="text-lg space-y-6">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Eligendi non reprehenderit
-                            facilis architecto autem quam
-                            necessitatibus, odit quod, repellendus
-                            voluptate cum. Necessitatibus a id tenetur.
-                            Error numquam at modi quaerat.
-                        </p>
+                        <p> {{$listData->description}} </p>
 
                         <a
                             href="mailto:test@test.com"
@@ -56,9 +49,8 @@
                             href="https://test.com"
                             target="_blank"
                             class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
-                            ><i class="fa-solid fa-globe"></i> Visit
-                            Website</a
-                        >
+                            ><i class="fa-solid fa-globe"></i> Visit Website    
+                        </a>
                     </div>
                 </div>
             </div>

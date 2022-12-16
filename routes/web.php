@@ -61,6 +61,11 @@ Route::get('/test/{id}', function($id){
 // get all posts via controller
 Route::get('/', [PostController::class, 'index']);
 
+//show create form   - must be above of get single post !!!
+Route::get('/posts/create', [PostController::class, 'create']);
 
-// get single post - with auto id checker - via controller
+//store - create form
+Route::post('/posts', [PostController::class, 'store']);
+
+// get single post - with auto id checker - via controller - must be under of all route !!!
 Route::get('/posts/{post}', [PostController::class, 'show']);

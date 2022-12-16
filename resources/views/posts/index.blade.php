@@ -36,6 +36,10 @@
             <p>No Jobs found</p>
         @endunless
 
+        <div class="mt-6 p-4">
+            {{$listData->links()}}
+        </div>
+
     </div>
 
 @endsection
