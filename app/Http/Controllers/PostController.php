@@ -82,6 +82,7 @@ class PostController extends Controller
         return back()->with('message', 'Post Updated!');
     }
 
+    //delete from DB
     public function destroy(Posts $post){
         $post->delete();
         return redirect('/')->with('message', 'Post Deleted!');
