@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CompanyController;
 use App\Models\Posts;
 use Illuminate\Support\Facades\Route;
 
@@ -56,7 +57,7 @@ Route::get('/test/{id}', function($id){
 //     ]);
 // });
 
-// ________________________________________________________________
+// ___________________POST API_____________________________________________
 
 // get all posts via controller
 Route::get('/', [PostController::class, 'index']);
@@ -78,3 +79,8 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
 // get single post - with auto id checker - via controller - must be under of all route !!!
 Route::get('/posts/{post}', [PostController::class, 'show']);
+
+// ___________________Company API__________________________________________
+
+// get all companies via controller
+Route::get('/company', [CompanyController::class, 'index']);

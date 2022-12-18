@@ -1,6 +1,6 @@
 @props(['data'])
 
-<div class="bg-gray-80 border border-gray-200 rounded p-6">
+<div class="bg-yellow-100 border border-gray-200 rounded p-6">
     <div class="flex">
         <img
             {{-- use command to link correctly ->   php artisan storage:link --}}
