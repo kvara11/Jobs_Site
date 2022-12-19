@@ -12,6 +12,9 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script> tailwind.config = {

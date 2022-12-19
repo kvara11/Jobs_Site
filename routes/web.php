@@ -84,3 +84,6 @@ Route::get('/posts/{post}', [PostController::class, 'show']);
 
 // get all companies via controller
 Route::get('/company', [CompanyController::class, 'index']);
+
+//show create form   - must be above of get single post !!!
+Route::get('/company/create', [CompanyController::class, 'create']);

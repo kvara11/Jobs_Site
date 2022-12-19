@@ -24,7 +24,11 @@ class CompanyController extends Controller
 
     public function create()
     {
-        //
+        $industries =DB::table('industries')->get();
+        // dd($industries);
+        return view('company.create', [
+            'list' => $industries
+        ]);
     }
 
     
