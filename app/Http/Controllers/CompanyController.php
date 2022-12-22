@@ -13,7 +13,6 @@ class CompanyController extends Controller
 {
     public function index()
     {
-
         return view('company.index', [
             'companies' => Company::leftJoin('industries', 'industries.id', '=', 'company.industries_id')
             ->select('industries.name as industry_name', 'company.*')
@@ -31,26 +30,30 @@ class CompanyController extends Controller
         ]);
     }
 
-    
+
     public function store(Request $request)
     {
         //
     }
+
 
     public function show($id)
     {
         //
     }
 
+
     public function edit($id)
     {
         //
     }
 
+
     public function update(Request $request, $id)
     {
         //
     }
+
 
     public function destroy($id)
     {

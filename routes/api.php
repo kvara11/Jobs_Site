@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/posts', function () {
     return response()->json([
         'posts'=>[
-            'title'=>'Post One'
+            'title'=>'Test Post'
         ]
     ]);
 });

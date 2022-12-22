@@ -13,8 +13,8 @@ class PostController extends Controller
     public function index(){
         // dd(request()->search);
         return view('posts.index', [
-            'listData' => Posts::filter(request(['tag', 'search']))->orderBy('id', 'DESC')->paginate(4)     // GET BY PAGE SIZE
-            // 'listData' => Posts::filter(request(['tag', 'search']))->get();                              // GET ALL
+            'listData' => Posts::filter(request(['tag', 'search']))->orderBy('id', 'DESC')->paginate(4)     // GET BY PAGE SIZE, filter connected to filterScope, ['tag', 'search'] -> name of inputs
+            // 'listData' => Posts::filter(request(['tag', 'search']))->get()->dd()                         // GET ALL
             // 'listData' => Posts::filter(request(['tag', 'search']))->simplePaginate(3)                   // GET BY PAGE SIZE
         ]);
     }
@@ -64,7 +64,7 @@ class PostController extends Controller
         $form = $request->validate([
             'title'=>['required', 'max:255'],
             'email'=>['email', 'required', 'max:255'],
-            'company_name'=>['required', 'max:255'],                       //check if company name is unique in DB posts.company_name table row
+            'company_name'=>['required', 'max:255'],                                   
             'country'=>['required', 'max:255'],
             'tags'=>'string',
             'description'=>['required', 'min:20']

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\UserController;
 use App\Models\Posts;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,7 @@ Route::get('/test/{id}', function($id){
 //         'listData' => $post
 //     ]);
 // });
+// _____________________________________
 
 // ___________________POST API_____________________________________________
 
@@ -63,22 +65,24 @@ Route::get('/test/{id}', function($id){
 Route::get('/', [PostController::class, 'index']);
 
 //show create form   - must be above of get single post !!!
-Route::get('/posts/create', [PostController::class, 'create']);
+//middleware('auth') - for authenticated users, middleware('guest') for guests
+Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth');
 
 //store(save) - create form
-Route::post('/posts', [PostController::class, 'store']);
+Route::post('/posts', [PostController::class, 'store'])->middleware('auth');
 
 //show edit form
-Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->middleware('auth');
 
 //store(save) - edit form
-Route::put('/posts/{post}', [PostController::class, 'update']);
+Route::put('/posts/{post}', [PostController::class, 'update'])->middleware('auth');
 
 //delete post
-Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('auth');
 
 // get single post - with auto id checker - via controller - must be under of all route !!!
 Route::get('/posts/{post}', [PostController::class, 'show']);
+
 
 // ___________________Company API__________________________________________
 
@@ -86,4 +90,23 @@ Route::get('/posts/{post}', [PostController::class, 'show']);
 Route::get('/company', [CompanyController::class, 'index']);
 
 //show create form   - must be above of get single post !!!
-Route::get('/company/create', [CompanyController::class, 'create']);
+Route::get('/company/create', [CompanyController::class, 'create'])->middleware('auth');
+
+
+// __________________Users API___________________________________________
+
+//user create form
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+
+//store user to DB
+Route::post('/users', [UserController::class, 'store'])->middleware('guest');
+
+//user logout
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+//show user login form
+//use name() to use it in middleware
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest'); 
+
+//authenicate user for log-in
+Route::post('/users/authenicate', [UserController::class, 'authenicate']);

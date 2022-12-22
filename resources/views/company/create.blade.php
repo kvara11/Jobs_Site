@@ -1,8 +1,6 @@
 @extends('layout')
 @section('content')
-@php
-    // dd($list);
-@endphp
+
     <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
@@ -38,13 +36,6 @@
                     class="inline-block text-lg mb-2"
                     >Industry</label
                 >
-                {{-- <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="industry_name"
-                    placeholder="Example: Computer and technology"
-                    value="{{old('industry_name')}}"
-                /> --}}
 
                 <select class="border border-gray-200 rounded p-2 w-full" name="industry_name" id="industry_name" >
                     <option value="option_select" disabled selected>Industries</option>
