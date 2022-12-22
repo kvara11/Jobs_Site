@@ -12,6 +12,7 @@ class PostController extends Controller
     //show all posts
     public function index(){
         // dd(request()->search);
+        // dd(auth()->id());
         return view('posts.index', [
             'listData' => Posts::filter(request(['tag', 'search']))->orderBy('id', 'DESC')->paginate(4)     // GET BY PAGE SIZE, filter connected to filterScope, ['tag', 'search'] -> name of inputs
             // 'listData' => Posts::filter(request(['tag', 'search']))->get()->dd()                         // GET ALL
@@ -48,6 +49,8 @@ class PostController extends Controller
             $form['logo'] = $request->file('logo')->store('logos', 'public');             //file upload - storage/app/logos
         }                                                                                 //use command to link correctly ->   php artisan storage:link
 
+        $form['user_id'] = auth()->id();                                                  //add logged user id
+
         Posts::create($form);
 
         // Session::flash('message', 'Post Created!');                                      //same as redirect('/')->with()
@@ -61,6 +64,11 @@ class PostController extends Controller
 
     //update edit form in DB
     public function update(Request $request, Posts $post){                                     //Request $request - dependency injection
+        //check if user is correct
+        if($post->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+        
         $form = $request->validate([
             'title'=>['required', 'max:255'],
             'email'=>['email', 'required', 'max:255'],
@@ -84,7 +92,18 @@ class PostController extends Controller
 
     //delete from DB
     public function destroy(Posts $post){
+        if($post->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+        
         $post->delete();
         return redirect('/')->with('message', 'Post Deleted!');
+    }
+
+    //manage user's posts
+    public function manage(){
+        return view('posts.manage', [
+            'posts' => auth()->user()->postsByUser()->get()
+        ]);
     }
 }

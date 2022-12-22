@@ -57,7 +57,7 @@ Route::get('/test/{id}', function($id){
 //         'listData' => $post
 //     ]);
 // });
-// _____________________________________
+// __________________________________________________________________________________________________________________
 
 // ___________________POST API_____________________________________________
 
@@ -80,6 +80,9 @@ Route::put('/posts/{post}', [PostController::class, 'update'])->middleware('auth
 //delete post
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('auth');
 
+//manage posts
+Route::get('/posts/manage', [PostController::class, 'manage'])->middleware('auth');
+
 // get single post - with auto id checker - via controller - must be under of all route !!!
 Route::get('/posts/{post}', [PostController::class, 'show']);
 
@@ -101,12 +104,11 @@ Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 //store user to DB
 Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
-//user logout
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
-
-//show user login form
-//use name() to use it in middleware
+//show user login form, use name() to use it in middleware
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest'); 
 
 //authenicate user for log-in
 Route::post('/users/authenicate', [UserController::class, 'authenicate']);
+
+//user logout
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');

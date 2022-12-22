@@ -52,4 +52,9 @@ class Posts extends Model
         
         //use clockwork extension for t-sql query output
     }
+
+    //Relationship with User
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

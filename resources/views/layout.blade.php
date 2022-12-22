@@ -43,7 +43,7 @@
                         Welcome {{auth()->user()->name}}
                     </span>
                     <li>
-                        <a href="login.html" class="hover:text-laravel"
+                        <a href="/posts/manage" class="hover:text-laravel"
                             ><i class="fa-solid fa-gear"></i>
                             Manage Posts</a
                         >
