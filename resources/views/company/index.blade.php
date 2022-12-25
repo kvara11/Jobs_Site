@@ -18,7 +18,7 @@
                 <h3> {{$data['company_name']}} </h3> --}}
 
                 <x-company-card :data="$company" />
-
+                
             @endforeach
         @else
             <p>No Jobs found</p>
@@ -26,5 +26,41 @@
 
         
     </div>
+
+
+
+    {{-- Modal Opening and Cloting with dymanic data --}}
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('.openModal').on('click', function(e){
+                
+                const id = $(this).attr('data-id');
+                
+                $.ajax({
+                    type: "GET",
+                    url: "company_info/" + id,
+                    success: function (res) 
+                    {
+                        console.log(res);
+                        $('#modal-title').html(res.name);
+                        $('#modal-desc').text(res.descriprion);
+                    }
+                });
+                
+                $('#interestModal').removeClass('invisible');
+
+            });
+
+            $('.closeModal').on('click', function(e){
+
+                $('#interestModal').addClass('invisible');
+
+            });
+            
+        });
+
+    </script>
 
 @endsection

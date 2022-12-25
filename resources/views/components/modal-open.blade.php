@@ -1,7 +1,4 @@
 @props(['data'])
-@php
-    
-@endphpp 
 
 
 <button type="button" class="w-25 h-8 focus:outline-none openModal text-white text-sm px-5 mt-5 mx-5  rounded-md bg-green-500 hover:bg-green-600 hover:shadow-lg">Info</button>
@@ -41,7 +38,7 @@
 
                         <div class="mt-2">
 
-                            <p class="text-sm text-gray-500">
+                            <p class="text-sm text-gray-500" id="modal-desc">
 
                                 {{$data->descriprion}}
                             </p>

@@ -95,6 +95,8 @@ Route::get('/company', [CompanyController::class, 'index']);
 //show create form   - must be above of get single post !!!
 Route::get('/company/create', [CompanyController::class, 'create'])->middleware('auth');
 
+Route::get('/company_info/{id}', [CompanyController::class, 'info']);
+
 
 // __________________Users API___________________________________________
 

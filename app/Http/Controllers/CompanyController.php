@@ -20,6 +20,10 @@ class CompanyController extends Controller
         ]);
     }
 
+    public function info($id){
+        return Company::find($id);
+    }
+
 
     public function create()
     {
