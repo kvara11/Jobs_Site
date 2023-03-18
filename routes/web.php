@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
 use App\Models\Posts;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,9 @@ Route::get('/test/{id}', function($id){
     // ddd($id);
     return response('Post ' .$id);
 })->where('id', '[0-9]+');                     //regular expression
+
+
+Route::get('/Ajax', [Controller::class, 'test']);
 
 
 
